@@ -1,0 +1,12 @@
+.git/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+data/
+dataset/
+runs/
+*.pptx
+/onion-image.png
+/sample.jpeg

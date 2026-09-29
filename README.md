@@ -13,6 +13,12 @@ conda run -n p30 uvicorn main:app --reload
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000). The app initializes its SQLite database and `data/media/` folder on first start. Set `ONION_DATA_DIR` to move local report and image storage elsewhere.
 
+## Deploy on Render
+
+Create a Render **Web Service** connected to this repository and select the **Docker** runtime. Render will build the root `Dockerfile`. The container binds to `0.0.0.0` and uses Render's `PORT` environment variable; `/api/health` is the health-check path.
+
+The container stores SQLite data and uploaded report images under `/var/data`. To retain them through restarts and deploys, attach a persistent disk mounted at `/var/data`. Render's filesystem is otherwise ephemeral, and persistent disks require a paid service plan. For a disposable demo deployment, no disk setup is needed.
+
 ## What the prototype does
 
 - Accepts one tray photo or up to 12 individual onion images (JPEG, PNG and WebP, up to 15 MB each).
